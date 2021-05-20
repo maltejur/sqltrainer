@@ -2,8 +2,8 @@
   "name": "sqltrainer",
   "version": "0.1.0",
   "scripts": {
-    "dev": "snowpack dev",
-    "build": "snowpack build"
+    "dev": "snowpack dev --polyfill-node",
+    "build": "snowpack build --polyfill-node"
   },
   "dependencies": {
     "@material-ui/core": "^4.11.4",
@@ -23,7 +23,6 @@
     "@snowpack/plugin-dotenv": "^2.1.0",
     "@snowpack/plugin-react-refresh": "^2.5.0",
     "@snowpack/plugin-typescript": "^1.2.1",
-    "@snowpack/plugin-webpack": "^2.3.1",
     "@types/react": "^17.0.6",
     "@types/react-dom": "^17.0.5",
     "@types/snowpack-env": "^2.3.3",

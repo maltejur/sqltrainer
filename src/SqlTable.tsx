@@ -20,16 +20,16 @@ export default function SqlTable({ table }: { table: QueryExecResult }) {
       <Table>
         <TableHead>
           <TableRow>
-            {table.columns.map((column) => (
-              <TableCell>{column}</TableCell>
+            {table.columns.map((column, index) => (
+              <TableCell key={index}>{column}</TableCell>
             ))}
           </TableRow>
         </TableHead>
         <TableBody>
-          {table.values.slice(0, limit).map((row) => (
-            <TableRow>
-              {row.map((column) => (
-                <TableCell>{column}</TableCell>
+          {table.values.slice(0, limit).map((row, index) => (
+            <TableRow key={index}>
+              {row.map((column, index) => (
+                <TableCell key={index}>{column}</TableCell>
               ))}
             </TableRow>
           ))}

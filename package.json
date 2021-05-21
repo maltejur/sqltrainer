@@ -16,10 +16,13 @@
     "react-dom": "^17.0.2",
     "react-monaco-editor": "^0.43.0",
     "sql.js": "^1.5.0",
-    "styled-jsx": "^3.4.4"
+    "styled-jsx": "^3.4.4",
+    "swr": "^0.5.6"
   },
   "devDependencies": {
+    "@babel/preset-react": "^7.13.13",
     "@snowpack/app-scripts-react": "^2.0.1",
+    "@snowpack/plugin-babel": "^2.1.7",
     "@snowpack/plugin-dotenv": "^2.1.0",
     "@snowpack/plugin-react-refresh": "^2.5.0",
     "@snowpack/plugin-typescript": "^1.2.1",

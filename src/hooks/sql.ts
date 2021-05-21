@@ -56,7 +56,7 @@ export default function useSql() {
       locateFile: (file: any) => `https://sql.js.org/dist/${file}`,
     }).then((SQL: SqlJsStatic) => {
       setSQL(SQL);
-      setDataset("/Northwind_small.sqlite", SQL);
+      setDataset("/Chinook_Sqlite.sqlite", SQL);
     });
   }, []);
 

@@ -1,5 +1,5 @@
 import React from "react";
-import type { Table } from "./hooks/sql";
+import type { Table } from "../hooks/sql";
 
 export default function SqlTypes({ tables }: { tables: Table[] }) {
   return (

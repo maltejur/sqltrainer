@@ -16,8 +16,12 @@ export default function SqlTable({ table }: { table: QueryExecResult }) {
   const [limit, setLimit] = useState(20);
 
   return (
-    <TableContainer component={Paper} className="tableContainer">
-      <Table>
+    <TableContainer
+      component={Paper}
+      className="tableContainer"
+      style={{ marginTop: 30 }}
+    >
+      <Table size="small">
         <TableHead>
           <TableRow>
             {table.columns.map((column, index) => (

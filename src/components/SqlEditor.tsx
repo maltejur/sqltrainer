@@ -5,12 +5,14 @@ import MonacoEditor from "@monaco-editor/react";
 export default function SqlEditor({
   value,
   onChange,
+  children,
 }: {
   value: string;
   onChange: (value: string) => void;
+  children?: JSX.Element;
 }) {
   return (
-    <Paper style={{ width: "100%", zIndex: 10 }}>
+    <Paper style={{ width: "100%", zIndex: 10, position: "relative" }}>
       <MonacoEditor
         height={150}
         value={value}
@@ -27,6 +29,7 @@ export default function SqlEditor({
           },
         }}
       />
+      {children && children}
     </Paper>
   );
 }

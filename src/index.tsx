@@ -5,10 +5,18 @@ import App from "./App";
 ReactDOM.render(
   <React.StrictMode>
     <App />
-    <style jsx global>{`
+    <style>{`
       html,
       body {
         margin: 0;
+      }
+      body {
+        overflow-y: scroll;
+      }
+      code {
+        background-color: rgba(0,0,0,0.05);
+        font-size: 0.9em;
+        padding: 0.1em 0.3em
       }
     `}</style>
   </React.StrictMode>,

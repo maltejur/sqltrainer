@@ -1,5 +1,6 @@
 export interface Task {
   id: number;
-  name: string; 
+  name: string;
   task: string;
+  includeTables: string[];
 }

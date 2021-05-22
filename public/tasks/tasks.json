@@ -2,6 +2,19 @@
   {
     "id": 0,
     "name": "Einstieg",
-    "task": "Gebe alle Lieder aus, die in der Datenbank existieren"
+    "task": "Gebe alle Lieder aus, die in der Datenbank existieren",
+    "includeTables": ["Track"]
+  },
+  {
+    "id": 1,
+    "name": "Luís Gonçalves",
+    "task": "Gebe den Vor- und Nachnamen aller Kunden aus",
+    "includeTables": ["Customer"]
+  },
+  {
+    "id": 2,
+    "name": "Black Sabbath",
+    "task": "Gebe die Namen alle Lider aus dem Album `Black Sabbath` aus",
+    "includeTables": ["Track", "Album"]
   }
 ]

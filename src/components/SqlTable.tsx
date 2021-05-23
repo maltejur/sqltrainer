@@ -48,7 +48,7 @@ export default function SqlTable({ table }: { table: QueryExecResult }) {
           More
         </Button>
       )}
-      <style jsx>
+      <style>
         {`
           .tableContainer {
             display: flex;

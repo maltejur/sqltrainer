@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import type { SqlJsStatic } from "sql.js";
+import type { QueryExecResult, SqlJsStatic } from "sql.js";
 /* @ts-ignore */
 import initSqlJs from "sql.js/dist/sql-asm-memory-growth.js";
 
@@ -12,21 +12,25 @@ export interface Table {
   pk?: string;
 }
 
-export default function useSql(url: string) {
+export default function useSql(url?: string) {
   const [tables, setTables] = useState<Table[]>([]);
   const [SQL, setSQL] = useState<SqlJsStatic>();
   const [buffer, setBuffer] = useState<Uint8Array>();
 
   useEffect(() => {
-    fetch(url).then(async (response) => {
-      setBuffer(new Uint8Array(await response.arrayBuffer()));
-    });
     initSqlJs({
       locateFile: (file: any) => `https://sql.js.org/dist/${file}`,
     }).then((SQL: SqlJsStatic) => {
       setSQL(SQL);
     });
   }, []);
+
+  useEffect(() => {
+    if (url)
+      fetch(url).then(async (response) => {
+        setBuffer(new Uint8Array(await response.arrayBuffer()));
+      });
+  }, [url]);
 
   useEffect(() => {
     if (SQL && buffer) {
@@ -62,10 +66,14 @@ export default function useSql(url: string) {
     }
   }, [SQL, buffer]);
 
-  function exec(query: string) {
+  function exec(queries: string[]) {
     if (SQL && buffer) {
       const db = new SQL.Database(buffer);
-      return db.exec(query);
+      const ret: QueryExecResult[] = [];
+      for (let i = 0; i < queries.length; i++) {
+        ret.push(...db.exec(queries[i]));
+      }
+      return ret;
     } else throw new Error("SQLite not initialized yet");
   }
 

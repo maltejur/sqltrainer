@@ -1,20 +1,38 @@
 [
   {
     "id": 0,
+    "db": "/Chinook_Sqlite.sqlite",
     "name": "Einstieg",
-    "task": "Gebe alle Lieder aus, die in der Datenbank existieren",
+    "task": "Gebe alle Eigenschaften der Lieder aus, die in der Datenbank existieren",
     "includeTables": ["Track"]
   },
   {
     "id": 1,
+    "db": "/Chinook_Sqlite.sqlite",
     "name": "Luís Gonçalves",
     "task": "Gebe den Vor- und Nachnamen aller Kunden aus",
     "includeTables": ["Customer"]
   },
   {
     "id": 2,
+    "db": "/Chinook_Sqlite.sqlite",
     "name": "Black Sabbath",
     "task": "Gebe die Namen alle Lider aus dem Album `Black Sabbath` aus",
     "includeTables": ["Track", "Album"]
+  },
+  {
+    "id": 3,
+    "db": "/Chinook_Sqlite.sqlite",
+    "name": "Gefeuert",
+    "task": "Robert King (ID: `7`) wurde gefeuert und muss nun entfernt werden",
+    "includeTables": ["Employee"],
+    "testQuery": "SELECT EmployeeId FROM Employee"
+  },
+  {
+    "id": 4,
+    "db": "/Chinook_Sqlite.sqlite",
+    "name": "Der Chef",
+    "task": "`Nancy Edwards` ist Vertriebsleiterin. Gebe die Nachnamen aller Mitarbeiter an, von denen sie die Vorgesetzte ist.",
+    "includeTables": ["Employee"]
   }
 ]

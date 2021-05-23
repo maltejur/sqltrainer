@@ -30,7 +30,7 @@ export default function TaskView({
   const id = Number.parseInt(useParams<{ id: string | undefined }>().id!);
   const tasks = useSWR<Task[]>("/tasks/tasks.json").data;
   const [expected, setExpected] = useState<string>();
-  const { tables, exec } = useSql("/Chinook_Sqlite.sqlite");
+  const { tables, exec } = useSql(tasks ? tasks[id].db : undefined);
   const [query, setQuery] = useLocalStorage(`solution${id}`, "", [id]);
   const [status, setStatus] = useState<{
     sqlResult?: QueryExecResult[];
@@ -110,29 +110,40 @@ export default function TaskView({
               style={{ marginTop: 5 }}
             />
           </Paper>
-          <SqlEditor value={query} onChange={setQuery}>
+          <SqlEditor
+            value={query}
+            onChange={setQuery}
+            tables={tables.filter((table) =>
+              tasks[id].includeTables.includes(table.name)
+            )}
+          >
             <Button
               onClick={() => {
                 try {
-                  const sqlResult = exec(query);
-                  console.log(JSON.stringify(sqlResult), expected);
-                  if (sqlResult.length) {
-                    if (JSON.stringify(sqlResult) === expected) {
-                      setStatus({ sqlResult, message: "Richtige Antwort" });
-                      setSolved((oldSolved: boolean[]) => {
-                        const solved: boolean[] = [...oldSolved];
-                        solved[id] = true;
-                        return solved;
-                      });
-                    } else
-                      setStatus({
-                        sqlResult,
-                        error: "Unerwartete Antwort",
-                      });
-                  } else
+                  let testResult = exec([
+                    query,
+                    ...(tasks[id].testQuery ? [tasks[id].testQuery!] : []),
+                  ]);
+                  if (JSON.stringify(testResult) === expected) {
                     setStatus({
-                      error: `SQL Query hat keine Antwort gegeben`,
+                      sqlResult: testResult,
+                      message: "Richtige Antwort",
                     });
+                    setSolved((oldSolved: boolean[]) => {
+                      const solved: boolean[] = [...oldSolved];
+                      solved[id] = true;
+                      return solved;
+                    });
+                  } else {
+                    console.log(JSON.stringify(testResult));
+                    console.log(expected);
+                    setStatus({
+                      sqlResult: testResult,
+                      error: `Unerwartete Antwort${
+                        !testResult.length ? " (leere Antwort)" : ""
+                      }`,
+                    });
+                  }
                 } catch (error) {
                   setStatus({ error: `SQL-Fehler: ${error.message}` });
                 }

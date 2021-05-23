@@ -24,7 +24,7 @@ export default function Editor() {
       <Paper style={{ padding: 15, marginBottom: 30 }}>
         <SqlTables tables={tables} includeAll style={{ margin: 0 }} />
       </Paper>
-      <SqlEditor value={query} onChange={setQuery}>
+      <SqlEditor value={query} onChange={setQuery} tables={tables}>
         <div
           style={{
             position: "absolute",
@@ -36,7 +36,7 @@ export default function Editor() {
           <Button
             onClick={() => {
               try {
-                const sqlResult = exec(query);
+                const sqlResult = exec([query]);
                 downloadString(
                   JSON.stringify(sqlResult),
                   "application/json",
@@ -55,7 +55,7 @@ export default function Editor() {
           <Button
             onClick={() => {
               try {
-                const sqlResult = exec(query);
+                const sqlResult = exec([query]);
                 setStatus({ sqlResult });
               } catch (error) {
                 setStatus({ error: error.message });

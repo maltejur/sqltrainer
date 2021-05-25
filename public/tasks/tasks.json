@@ -23,7 +23,7 @@
   {
     "id": 3,
     "db": "/Chinook_Sqlite.sqlite",
-    "name": "Gefeuert",
+    "name": "Einfaches `DELETE`",
     "task": "Robert King (ID: `7`) wurde gefeuert und muss nun entfernt werden",
     "includeTables": ["Employee"],
     "testQuery": "SELECT EmployeeId FROM Employee"
@@ -34,5 +34,20 @@
     "name": "Der Chef",
     "task": "`Nancy Edwards` ist Vertriebsleiterin. Gebe die Nachnamen aller Mitarbeiter an, von denen sie die Vorgesetzte ist.",
     "includeTables": ["Employee"]
+  },
+  {
+    "id": 5,
+    "db": "/Chinook_Sqlite.sqlite",
+    "name": "Einfacher `INSERT`",
+    "task": "Der Künstler `Kanye West` fehlt in der Datenbank und muss hinzugefügt werden.",
+    "includeTables": ["Artist"],
+    "testQuery": "SELECT Name FROM Artist ORDER BY Name"
+  },
+  {
+    "id": 6,
+    "db": "/Chinook_Sqlite.sqlite",
+    "name": "`ORDER BY`",
+    "task": "Gebe die `InvoiceDate` und `Total` von den Rechnungen so an, dass die neuesten Rechnungen zuerst auftauchen",
+    "includeTables": ["Invoice"]
   }
 ]

@@ -85,7 +85,9 @@ export default function TaskView({
             <span style={{ color: "rgb(200,200,200)", marginRight: 15 }}>
               #{id.toFixed(0).padStart(2, "0")}
             </span>
-            {tasks[id].name}
+            <ReactMarkdown disallowedElements={["p"]} unwrapDisallowed={true}>
+              {tasks[id].name}
+            </ReactMarkdown>
             {solved[id] && (
               <Check style={{ color: "green", marginLeft: "10px" }} />
             )}

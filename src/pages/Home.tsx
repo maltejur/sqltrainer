@@ -16,6 +16,7 @@ import type { Task } from "../types";
 import { Link, useHistory } from "react-router-dom";
 import useLocalStorage from "../hooks/localStorage";
 import { Check } from "@material-ui/icons";
+import ReactMarkdown from "react-markdown";
 
 export default function Home() {
   const tasks = useSWR<Task[]>("/tasks/tasks.json").data;
@@ -40,7 +41,14 @@ export default function Home() {
                   onClick={() => history.push(`/task/${task.id}`)}
                 >
                   <TableCell>{task.id}</TableCell>
-                  <TableCell>{task.name}</TableCell>
+                  <TableCell>
+                    <ReactMarkdown
+                      disallowedElements={["p"]}
+                      unwrapDisallowed={true}
+                    >
+                      {task.name}
+                    </ReactMarkdown>
+                  </TableCell>
                   <TableCell>
                     {solved[task.id] ? (
                       <Check

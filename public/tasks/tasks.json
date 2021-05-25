@@ -49,5 +49,26 @@
     "name": "`ORDER BY`",
     "task": "Gebe die `InvoiceDate` und `Total` von den Rechnungen so an, dass die neuesten Rechnungen zuerst auftauchen",
     "includeTables": ["Invoice"]
+  },
+  {
+    "id": 7,
+    "db": "/Chinook_Sqlite.sqlite",
+    "name": "Durchschnitseinkauf",
+    "task": "Geben Sie an, wie viel Geld Kunden aus Deutschen Städten durchschnittlich pro Einkauf ausgeben.",
+    "includeTables": ["Invoice"]
+  },
+  {
+    "id": 8,
+    "db": "/Chinook_Sqlite.sqlite",
+    "name": "Kanadische Menschen",
+    "task": "Geben Sie Vornamen und Nachnamen von Mitarbeitern und Kunden aus Canada an mit dem dazugehörigen Status (Mitarbeiter/Kunde), in der Reihenfolge vom Vornamen an.",
+    "includeTables": ["Employee", "Customer"]
+  },
+  {
+    "id": 9,
+    "db": "/Chinook_Sqlite.sqlite",
+    "name": "`HAVING`",
+    "task": "Geben Sie jedes Land mit mehr als 3 Kunden und die dazugehörigen Anzahl an Kunden, in der Reihenfolge von der Anzahl der Kunden abteigend an.",
+    "includeTables": ["Customer"]
   }
 ]

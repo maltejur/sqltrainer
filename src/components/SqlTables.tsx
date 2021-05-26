@@ -1,12 +1,19 @@
+import type { Table as TableType } from "../hooks/sql";
+import {
+  Table,
+  TableBody,
+  TableCell,
+  TableContainer,
+  TableRow,
+} from "@material-ui/core";
 import React from "react";
-import type { Table } from "../hooks/sql";
 
 interface Props
   extends React.DetailedHTMLProps<
     React.HTMLAttributes<HTMLPreElement>,
     HTMLPreElement
   > {
-  tables: Table[];
+  tables: TableType[];
   include?: string[];
   includeAll?: boolean;
 }
@@ -18,32 +25,40 @@ export default function SqlTables({
   ...props
 }: Props) {
   return (
-    <pre {...props}>
-      {tables
-        .filter((table) => includeAll || include.includes(table.name))
-        .map((table) => (
-          <div key={table.name}>
-            <span style={{ fontWeight: "bold" }}>
-              {table.name}
-              {`  `}
-            </span>
-            <span style={{ color: "rgb(150, 150, 150)" }}>
-              {table.fields.map((field, index) => (
-                <span key={field.name}>
-                  <span
-                    style={{
-                      textDecoration:
-                        field.name === table.pk ? "underline" : "initial",
-                    }}
-                  >
-                    {field.name}
-                  </span>
-                  {index !== table.fields.length - 1 && `, `}
-                </span>
-              ))}
-            </span>
-          </div>
-        ))}
-    </pre>
+    <TableContainer>
+      <Table size="small">
+        <TableBody>
+          {tables
+            .filter((table) => includeAll || include.includes(table.name))
+            .map((table) => (
+              <TableRow key={table.name}>
+                <TableCell style={{ fontWeight: "bold" }}>
+                  {table.name}
+                  {` `}
+                </TableCell>
+                <TableCell
+                  style={{
+                    color: "rgb(150, 150, 150)",
+                  }}
+                >
+                  {table.fields.map((field, index) => (
+                    <>
+                      <span
+                        style={{
+                          textDecoration:
+                            field.name === table.pk ? "underline" : "initial",
+                        }}
+                      >
+                        {field.name}
+                      </span>
+                      {index !== table.fields.length - 1 && `, `}
+                    </>
+                  ))}
+                </TableCell>
+              </TableRow>
+            ))}
+        </TableBody>
+      </Table>
+    </TableContainer>
   );
 }

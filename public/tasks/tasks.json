@@ -4,21 +4,24 @@
     "db": "/Chinook_Sqlite.sqlite",
     "name": "Einstieg",
     "task": "Gebe alle Eigenschaften der Lieder aus, die in der Datenbank existieren",
-    "includeTables": ["Track"]
+    "includeTables": ["Track"],
+    "author": "Malte"
   },
   {
     "id": 1,
     "db": "/Chinook_Sqlite.sqlite",
     "name": "Luís Gonçalves",
     "task": "Gebe den Vor- und Nachnamen aller Kunden aus",
-    "includeTables": ["Customer"]
+    "includeTables": ["Customer"],
+    "author": "Malte"
   },
   {
     "id": 2,
     "db": "/Chinook_Sqlite.sqlite",
     "name": "Black Sabbath",
     "task": "Gebe die Namen alle Lider aus dem Album `Black Sabbath` aus",
-    "includeTables": ["Track", "Album"]
+    "includeTables": ["Track", "Album"],
+    "author": "Malte"
   },
   {
     "id": 3,
@@ -26,14 +29,16 @@
     "name": "Einfaches `DELETE`",
     "task": "Robert King (ID: `7`) wurde gefeuert und muss nun entfernt werden",
     "includeTables": ["Employee"],
-    "testQuery": "SELECT EmployeeId FROM Employee"
+    "testQuery": "SELECT EmployeeId FROM Employee",
+    "author": "Malte"
   },
   {
     "id": 4,
     "db": "/Chinook_Sqlite.sqlite",
     "name": "Der Chef",
     "task": "`Nancy Edwards` ist Vertriebsleiterin. Gebe die Nachnamen aller Mitarbeiter an, von denen sie die Vorgesetzte ist.",
-    "includeTables": ["Employee"]
+    "includeTables": ["Employee"],
+    "author": "Malte"
   },
   {
     "id": 5,
@@ -41,34 +46,64 @@
     "name": "Einfacher `INSERT`",
     "task": "Der Künstler `Kanye West` fehlt in der Datenbank und muss hinzugefügt werden.",
     "includeTables": ["Artist"],
-    "testQuery": "SELECT Name FROM Artist ORDER BY Name"
+    "testQuery": "SELECT Name FROM Artist ORDER BY Name",
+    "author": "Malte"
   },
   {
     "id": 6,
     "db": "/Chinook_Sqlite.sqlite",
     "name": "`ORDER BY`",
-    "task": "Gebe die `InvoiceDate` und `Total` von den Rechnungen so an, dass die neuesten Rechnungen zuerst auftauchen",
-    "includeTables": ["Invoice"]
+    "task": "Gebe das `InvoiceDate` und `Total` von den Rechnungen so an, dass die neuesten Rechnungen zuerst auftauchen",
+    "includeTables": ["Invoice"],
+    "author": "Malte"
   },
   {
     "id": 7,
     "db": "/Chinook_Sqlite.sqlite",
     "name": "Durchschnitseinkauf",
     "task": "Geben Sie an, wie viel Geld Kunden aus Deutschen Städten durchschnittlich pro Einkauf ausgeben.",
-    "includeTables": ["Invoice"]
+    "includeTables": ["Invoice"],
+    "author": "Alexander"
   },
   {
     "id": 8,
     "db": "/Chinook_Sqlite.sqlite",
     "name": "Kanadische Menschen",
-    "task": "Geben Sie Vornamen und Nachnamen von Mitarbeitern und Kunden aus Canada an mit dem dazugehörigen Status (Mitarbeiter/Kunde), in der Reihenfolge vom Vornamen an.",
-    "includeTables": ["Employee", "Customer"]
+    "task": "Geben Sie Vornamen und Nachnamen von Mitarbeitern und Kunden aus `Canada` an mit der dazugehörigen Reihe `Status` (`Mitarbeiter`/`Kunde`), in der Reihenfolge vom Vornamen an.",
+    "includeTables": ["Employee", "Customer"],
+    "author": "Elia"
   },
   {
     "id": 9,
     "db": "/Chinook_Sqlite.sqlite",
     "name": "`HAVING`",
     "task": "Geben Sie jedes Land mit mehr als 3 Kunden und die dazugehörigen Anzahl an Kunden, in der Reihenfolge von der Anzahl der Kunden abteigend an.",
-    "includeTables": ["Customer"]
+    "includeTables": ["Customer"],
+    "author": "Elia"
+  },
+  {
+    "id": 10,
+    "db": "/Chinook_Sqlite.sqlite",
+    "name": "Lieder einer Playlist",
+    "task": "Gib den Namen aller Playlists und die Anzahl der Lieder als „`Lieder`“ in der Playlist absteigend sortiert an.",
+    "includeTables": ["Playlist","PlaylistTrack"],
+    "author": "Mika"
+  },
+  {
+    "id": 11,
+    "db": "/Chinook_Sqlite.sqlite",
+    "name": "Doppelte Einträge löschen",
+    "task": "Beim Lösen der vorherigen Aufgabe ist Franz aufgefallen, dass Playlists existieren, deren Namen und Anzahl der Lieder identisch sind. Da Franz weiß, dass doppelte Einträge in einer Datenbank blöd sind, möchte er die doppelten Einträge entfernen. Hilf Franz und entferne die doppelten Playlists und die dazugehörigen Relationen aus der Datenbank.",
+    "includeTables": ["Playlist","PlaylistTrack"],
+    "author": "Mika",
+    "testQuery": "SELECT * FROM Playlist; SELECT * FROM PlaylistTrack;"
+  },
+  {
+    "id": 12,
+    "db": "/Chinook_Sqlite.sqlite",
+    "name": "Teure Musik",
+    "task": "Gebe die Albennamen und ihren Preis (als neue Reihe `Albumpreis`), in absteigender Reihenfolge nach dem Preis aus. (Der Albenpreis besteht aus der Summe der Preise der Lieder).",
+    "includeTables": ["Album", "Track"],
+    "author": "Marlon"
   }
 ]

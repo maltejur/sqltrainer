@@ -1,9 +1,19 @@
-import React, { Dispatch, SetStateAction, useEffect, useState } from "react";
+import React, {
+  Dispatch,
+  SetStateAction,
+  useEffect,
+  useMemo,
+  useState,
+} from "react";
 import {
+  Avatar,
   Button,
   CircularProgress,
   Fab,
   Paper,
+  Table,
+  TableCell,
+  TableRow,
   Typography,
 } from "@material-ui/core";
 import useSWR from "swr";
@@ -30,6 +40,11 @@ export default function TaskView({
   const id = Number.parseInt(useParams<{ id: string | undefined }>().id!);
   const tasks = useSWR<Task[]>("/tasks/tasks.json").data;
   const [expected, setExpected] = useState<string>();
+  const expectedColums: string[] = useMemo(
+    () => expected && JSON.parse(expected)[0].columns,
+    [expected]
+  );
+  console.log(expectedColums);
   const { tables, exec } = useSql(tasks ? tasks[id].db : undefined);
   const [query, setQuery] = useLocalStorage(`solution${id}`, "", [id]);
   const [status, setStatus] = useState<{
@@ -81,27 +96,55 @@ export default function TaskView({
       </div>
       {tasks ? (
         <>
-          <Typography variant="h4">
-            <span style={{ color: "rgb(200,200,200)", marginRight: 15 }}>
-              #{id.toFixed(0).padStart(2, "0")}
-            </span>
-            <ReactMarkdown disallowedElements={["p"]} unwrapDisallowed={true}>
-              {tasks[id].name}
-            </ReactMarkdown>
-            {solved[id] && (
-              <Check style={{ color: "green", marginLeft: "10px" }} />
+          <div
+            style={{
+              display: "flex",
+              justifyContent: "space-between",
+            }}
+          >
+            <Typography variant="h4">
+              <span style={{ color: "rgb(200,200,200)", marginRight: 15 }}>
+                #{id.toFixed(0).padStart(2, "0")}
+              </span>
+              <ReactMarkdown disallowedElements={["p"]} unwrapDisallowed={true}>
+                {tasks[id].name}
+              </ReactMarkdown>
+              {solved[id] && (
+                <Check style={{ color: "green", marginLeft: "10px" }} />
+              )}
+            </Typography>
+            {tasks[id].author && (
+              <div
+                style={{
+                  display: "flex",
+                  alignItems: "center",
+                }}
+              >
+                <Avatar
+                  style={{
+                    height: 30,
+                    width: 30,
+                    fontSize: 15,
+                    margin: "0 8px",
+                  }}
+                >
+                  {tasks[id].author?.slice(0, 1)}
+                </Avatar>
+                <Typography>{tasks[id].author}</Typography>
+              </div>
             )}
-          </Typography>
+          </div>
           <Typography style={{ marginTop: 30, marginBottom: 30 }}>
             <ReactMarkdown disallowedElements={["p"]} unwrapDisallowed={true}>
               {tasks[id].task}
             </ReactMarkdown>
           </Typography>
-          <Paper style={{ padding: 15, marginBottom: 20 }}>
+          <Paper style={{ padding: 25, marginBottom: 20 }}>
             <Typography
               variant="h6"
               style={{
                 fontSize: 16,
+                marginBottom: 10,
               }}
             >
               Struktur der Datenbank
@@ -111,6 +154,33 @@ export default function TaskView({
               include={tasks[id].includeTables}
               style={{ marginTop: 5 }}
             />
+            {!tasks[id].testQuery && expected && (
+              <>
+                <Typography
+                  variant="h6"
+                  style={{
+                    fontSize: 16,
+                    marginTop: 30,
+                    marginBottom: 10,
+                  }}
+                >
+                  Erwartete Antwort
+                </Typography>
+                <style>{`
+                .expectedTable {
+                  width: auto !important;
+                  fontWeight: 500;
+                }
+                `}</style>
+                <Table size="small" className="expectedTable">
+                  <TableRow>
+                    {expectedColums.map((column) => (
+                      <TableCell key={column}>{column}</TableCell>
+                    ))}
+                  </TableRow>
+                </Table>
+              </>
+            )}
           </Paper>
           <SqlEditor
             value={query}

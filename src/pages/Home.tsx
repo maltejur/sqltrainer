@@ -1,6 +1,12 @@
 import {
+  Avatar,
   Button,
   ButtonBase,
+  List,
+  ListItem,
+  ListItemAvatar,
+  ListItemIcon,
+  ListItemText,
   Paper,
   Table,
   TableBody,
@@ -27,44 +33,37 @@ export default function Home() {
     <div>
       <Typography variant="h4">SQLTrainer</Typography>
       {tasks && (
-        <TableContainer component={Paper} style={{ marginTop: 30 }}>
-          <Table size="small">
-            <TableHead>
-              <TableCell>Nummer</TableCell>
-              <TableCell>Aufgabe</TableCell>
-              <TableCell>Gelöst</TableCell>
-            </TableHead>
-            <TableBody>
-              {tasks.map((task) => (
-                <ButtonBase
-                  component={TableRow}
-                  onClick={() => history.push(`/task/${task.id}`)}
-                >
-                  <TableCell>{task.id}</TableCell>
-                  <TableCell>
-                    <ReactMarkdown
-                      disallowedElements={["p"]}
-                      unwrapDisallowed={true}
-                    >
-                      {task.name}
-                    </ReactMarkdown>
-                  </TableCell>
-                  <TableCell>
-                    {solved[task.id] ? (
-                      <Check
-                        style={{
-                          color: "green",
-                        }}
-                      />
-                    ) : (
-                      <div />
-                    )}
-                  </TableCell>
-                </ButtonBase>
-              ))}
-            </TableBody>
-          </Table>
-        </TableContainer>
+        <List component={Paper} style={{ maxWidth: 500, marginTop: 30 }} dense>
+          {tasks.map((task) => (
+            <ListItem button onClick={() => history.push(`/task/${task.id}`)}>
+              <ListItemAvatar>
+                <Avatar>{task.id}</Avatar>
+              </ListItemAvatar>
+              <ListItemText
+                primary={
+                  <ReactMarkdown
+                    disallowedElements={["p"]}
+                    unwrapDisallowed={true}
+                  >
+                    {task.name}
+                  </ReactMarkdown>
+                }
+                secondary={`von ${task.author}`}
+              />
+              {solved[task.id] ? (
+                <ListItemIcon>
+                  <Check
+                    style={{
+                      color: "green",
+                    }}
+                  />
+                </ListItemIcon>
+              ) : (
+                <div />
+              )}
+            </ListItem>
+          ))}
+        </List>
       )}
     </div>
   );

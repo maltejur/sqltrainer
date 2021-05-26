@@ -221,7 +221,7 @@ export default function SqlEditor({
   return (
     <Paper style={{ width: "100%", zIndex: 10, position: "relative" }}>
       <MonacoEditor
-        height={150}
+        height={180}
         value={value}
         onChange={(value) => onChange(value || "")}
         theme="light"

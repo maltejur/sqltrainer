@@ -21,7 +21,7 @@ export default function SqlTable({ table }: { table: QueryExecResult }) {
       className="tableContainer"
       style={{ marginTop: 30 }}
     >
-      <Table size="small">
+      <Table style={{ overflowX: "scroll" }}>
         <TableHead>
           <TableRow>
             {table.columns.map((column, index) => (
@@ -31,7 +31,7 @@ export default function SqlTable({ table }: { table: QueryExecResult }) {
         </TableHead>
         <TableBody>
           {table.values.slice(0, limit).map((row, index) => (
-            <TableRow key={index}>
+            <TableRow key={index} style={{ width: "100%" }}>
               {row.map((column, index) => (
                 <TableCell key={index}>{column}</TableCell>
               ))}

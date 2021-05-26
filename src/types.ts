@@ -5,4 +5,5 @@ export interface Task {
   task: string;
   includeTables: string[];
   testQuery?: string;
+  author?: string;
 }

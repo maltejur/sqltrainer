@@ -34,10 +34,10 @@ export default function Home() {
       <Typography variant="h4">SQLTrainer</Typography>
       {tasks && (
         <List component={Paper} style={{ maxWidth: 500, marginTop: 30 }} dense>
-          {tasks.map((task) => (
-            <ListItem button onClick={() => history.push(`/task/${task.id}`)}>
+          {tasks.map((task, id) => (
+            <ListItem button onClick={() => history.push(`/task/${id}`)}>
               <ListItemAvatar>
-                <Avatar>{task.id}</Avatar>
+                <Avatar>{id}</Avatar>
               </ListItemAvatar>
               <ListItemText
                 primary={
@@ -50,7 +50,7 @@ export default function Home() {
                 }
                 secondary={`von ${task.author}`}
               />
-              {solved[task.id] ? (
+              {solved[id] ? (
                 <ListItemIcon>
                   <Check
                     style={{

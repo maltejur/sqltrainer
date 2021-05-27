@@ -22,7 +22,6 @@ export default function SqlTables({
   tables,
   include = [],
   includeAll = false,
-  ...props
 }: Props) {
   return (
     <TableContainer>
@@ -42,7 +41,7 @@ export default function SqlTables({
                   }}
                 >
                   {table.fields.map((field, index) => (
-                    <>
+                    <span key={index}>
                       <span
                         style={{
                           textDecoration:
@@ -52,7 +51,7 @@ export default function SqlTables({
                         {field.name}
                       </span>
                       {index !== table.fields.length - 1 && `, `}
-                    </>
+                    </span>
                   ))}
                 </TableCell>
               </TableRow>

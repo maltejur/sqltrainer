@@ -99,5 +99,12 @@
     "task": "Gib die Namen der Lieder mit zugehörigem Album und Interpreten aus dem Genre Rock aufsteigend nach den Titel der Alben sortiert aus, die das Format `Protected AAC audio file` oder `AAC audio file` besitzen.",
     "includeTables": ["Track", "Album", "MediaType"],
     "author": "Jannes"
+  },
+  {
+    "db": "/Chinook_Sqlite.sqlite",
+    "name": "Künster mit O",
+    "task": "Gib alle vorkommenden Genres von allen Liedern von Künstern, die mit `O` anfangen  und die zugehörige Liederanzahl zu den jeweiligen Genres an (neue Spalte `Anzahl`).\nAchte darauf,  nur  Lieder auszuwählen, die bereits von Kunden gekauft wurden. Gib außerdem an, wie viel im Durchschnitt für die jeweiligen Genres ausgegeben wurden (neue Spalte `AusgabenDurchschnitt`). Runde auf 2 Stellen nach dem Komma.\nOrdne nach dem Ausgabendurchschnitt aufsteigend.",
+    "includeTables": ["Artist", "Track", "Genre", "Invoice", "InvoiceLine"],
+    "author": "Tra"
   }
 ]

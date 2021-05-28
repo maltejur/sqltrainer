@@ -97,7 +97,7 @@
     "db": "/Chinook_Sqlite.sqlite",
     "name": "Was ist das für ein Format?",
     "task": "Gib die Namen der Lieder mit zugehörigem Album und Interpreten aus dem Genre Rock aufsteigend nach den Titel der Alben sortiert aus, die das Format `Protected AAC audio file` oder `AAC audio file` besitzen.",
-    "includeTables": ["Track", "Album", "MediaType"],
+    "includeTables": ["Track", "Album", "MediaType", "Genre"],
     "author": "Jannes"
   },
   {

@@ -10,6 +10,7 @@ export interface Table {
     type: string;
   }[];
   pk?: string;
+  fk: string[];
 }
 
 export default function useSql(url?: string) {
@@ -41,7 +42,11 @@ export default function useSql(url?: string) {
       setTables(
         response[0]
           ? response[0].values.map(([name, sql]) => {
-              const table: Table = { name: name!.toString(), fields: [] };
+              const table: Table = {
+                name: name!.toString(),
+                fields: [],
+                fk: [],
+              };
               for (const match of sql!
                 .toString()
                 // Just works for this dataset
@@ -55,9 +60,16 @@ export default function useSql(url?: string) {
                   type: match[2],
                 });
               }
+              console.log(sql);
               const pk = sql!
                 .toString()
                 .match(/PRIMARY KEY +\(\[(.+)\]\)(,|\n)/);
+              const fk = sql!
+                .toString()
+                .matchAll(/FOREIGN KEY +\(\[(.+?)\]\)/g);
+              for (const match of fk) {
+                table.fk.push(match[1]);
+              }
               if (pk) table.pk = pk[1];
               return table;
             })

@@ -45,7 +45,11 @@ export default function SqlTables({
                       <span
                         style={{
                           textDecoration:
-                            field.name === table.pk ? "underline" : "initial",
+                            field.name === table.pk
+                              ? "underline"
+                              : table.fk.includes(field.name)
+                              ? "underline dashed"
+                              : "initial",
                         }}
                       >
                         {field.name}

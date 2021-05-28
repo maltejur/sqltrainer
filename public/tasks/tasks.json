@@ -67,7 +67,7 @@
   {
     "db": "/Chinook_Sqlite.sqlite",
     "name": "`HAVING`",
-    "task": "Geben Sie jedes Land mit mehr als 3 Kunden und die dazugehörigen Anzahl an Kunden, in der Reihenfolge von der Anzahl der Kunden abteigend an.",
+    "task": "Geben Sie jedes Land mit mehr als 3 Kunden und die dazugehörigen Anzahl an Kunden, in der Reihenfolge von der Anzahl der Kunden aufsteigend an.",
     "includeTables": ["Customer"],
     "author": "Elia"
   },

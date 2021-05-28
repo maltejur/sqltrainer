@@ -1,1 +1,1 @@
-[{"columns":["COUNT(Phone)","Country"],"values":[[4,"Germany"],[5,"Brazil"],[5,"France"],[8,"Canada"],[13,"USA"]]}]
+[{"columns":["Anzahl","Country"],"values":[[4,"Germany"],[5,"Brazil"],[5,"France"],[8,"Canada"],[13,"USA"]]}]

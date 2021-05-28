@@ -191,6 +191,49 @@ export default function SqlEditor({
                           .InsertAsSnippet,
                     } as languages.CompletionItem)
                 ),
+                ...[
+                  // From https://www.techonthenet.com/sqlite/functions/index.php
+                  "abs",
+                  "avg",
+                  "coalesce",
+                  "concatenate",
+                  "with",
+                  "count",
+                  "date",
+                  "datetime",
+                  "ifnull",
+                  "instr",
+                  "julianday",
+                  "last_insert_rowid",
+                  "length",
+                  "lower",
+                  "ltrim",
+                  "max",
+                  "min",
+                  "now",
+                  "nullif",
+                  "random",
+                  "replace",
+                  "round",
+                  "rtrim",
+                  "sqlite_version",
+                  "strftime",
+                  "substr",
+                  "sum",
+                  "time",
+                  "trim",
+                  "upper",
+                ].map(
+                  (x) =>
+                    ({
+                      label: x,
+                      kind: monaco.languages.CompletionItemKind.Operator,
+                      insertText: x,
+                      insertTextRules:
+                        monaco.languages.CompletionItemInsertTextRule
+                          .InsertAsSnippet,
+                    } as languages.CompletionItem)
+                ),
                 ...tables.flatMap((table) =>
                   [
                     table.name,

@@ -102,8 +102,8 @@
   },
   {
     "db": "/Chinook_Sqlite.sqlite",
-    "name": "Künster mit O",
-    "task": "Gib alle vorkommenden Genres von allen Liedern von Künstern, die mit `O` anfangen  und die zugehörige Liederanzahl zu den jeweiligen Genres an (neue Spalte `Anzahl`).\nAchte darauf,  nur  Lieder auszuwählen, die bereits von Kunden gekauft wurden. Gib außerdem an, wie viel im Durchschnitt für die jeweiligen Genres ausgegeben wurden (neue Spalte `AusgabenDurchschnitt`). Runde auf 2 Stellen nach dem Komma.\nOrdne nach dem Ausgabendurchschnitt aufsteigend.",
+    "name": "Künstler mit O",
+    "task": "Gib alle vorkommenden Genres von allen Liedern von Künstlern, die mit `O` anfangen  und die zugehörige Liederanzahl zu den jeweiligen Genres an (neue Spalte `Anzahl`).\nAchte darauf,  nur  Lieder auszuwählen, die bereits von Kunden gekauft wurden. Gib außerdem an, wie viel im Durchschnitt für die jeweiligen Genres ausgegeben wurden (neue Spalte `AusgabenDurchschnitt`). Runde auf 2 Stellen nach dem Komma.\nOrdne nach dem Ausgabendurchschnitt aufsteigend.",
     "includeTables": [
       "Artist",
       "Track",

@@ -69,6 +69,7 @@ export default function Editor() {
             }}
             variant="contained"
             color="primary"
+            disabled={query.length === 0 || tables.length === 0}
           >
             Save answer
           </Button>
@@ -86,6 +87,7 @@ export default function Editor() {
             variant="contained"
             color="primary"
             style={{ marginLeft: 10 }}
+            disabled={query.length === 0 || tables.length === 0}
           >
             Run
           </Button>

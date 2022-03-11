@@ -27,10 +27,13 @@ export default function useSql(url?: string) {
   }, []);
 
   useEffect(() => {
-    if (url)
+    if (url) {
+      setBuffer(undefined);
+      setTables([]);
       fetch(url).then(async (response) => {
         setBuffer(new Uint8Array(await response.arrayBuffer()));
       });
+    }
   }, [url]);
 
   useEffect(() => {

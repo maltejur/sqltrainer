@@ -1,5 +1,6 @@
 import type { Table as TableType } from "../hooks/sql";
 import {
+  LinearProgress,
   Table,
   TableBody,
   TableCell,
@@ -23,7 +24,9 @@ export default function SqlTables({
   include = [],
   includeAll = false,
 }: Props) {
-  return (
+  return tables.length === 0 ? (
+    <LinearProgress />
+  ) : (
     <TableContainer>
       <Table size="small">
         <TableBody>

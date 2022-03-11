@@ -228,7 +228,7 @@ export default function TaskView({
               variant="contained"
               color="primary"
               style={{ position: "absolute", right: 15, bottom: 15 }}
-              disabled={query.length === 0}
+              disabled={query.length === 0 || tables.length === 0}
             >
               Ausführen
             </Button>

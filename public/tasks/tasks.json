@@ -16,7 +16,7 @@
   {
     "db": "/Chinook_Sqlite.sqlite",
     "name": "Black Sabbath",
-    "task": "Gebe die Namen alle Lider aus dem Album `Black Sabbath` aus",
+    "task": "Gebe die Namen alle Lieder aus dem Album `Black Sabbath` aus",
     "includeTables": ["Track", "Album"],
     "author": "Malte"
   },

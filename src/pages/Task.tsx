@@ -51,6 +51,7 @@ export default function TaskView({
     sqlResult?: QueryExecResult[];
     error?: string;
     message?: string;
+    time?: number;
   }>({});
 
   useEffect(() => {
@@ -192,14 +193,17 @@ export default function TaskView({
             <Button
               onClick={() => {
                 try {
+                  let time = Date.now();
                   let testResult = exec([
                     query,
                     ...(tasks[id].testQuery ? [tasks[id].testQuery!] : []),
                   ]);
+                  time = Date.now() - time;
                   if (JSON.stringify(testResult) === expected) {
                     setStatus({
                       sqlResult: testResult,
                       message: "Richtige Antwort",
+                      time,
                     });
                     setSolved((oldSolved: boolean[]) => {
                       const solved: boolean[] = [...oldSolved];
@@ -214,9 +218,10 @@ export default function TaskView({
                       error: `Unerwartete Antwort${
                         !testResult.length ? " (leere Antwort)" : ""
                       }`,
+                      time,
                     });
                   }
-                } catch (error) {
+                } catch (error: any) {
                   setStatus({ error: `SQL-Fehler: ${error.message}` });
                 }
               }}
@@ -232,6 +237,14 @@ export default function TaskView({
           <div style={{ marginTop: 30 }}>
             {status.message && <Alert>{status.message}</Alert>}
             {status.error && <Alert severity="error">{status.error}</Alert>}
+            {!!status.sqlResult &&
+              status.sqlResult[0] &&
+              status.time !== undefined && (
+                <Alert severity="info" style={{ marginTop: 10 }}>
+                  {status.sqlResult[0].values.length} Ergebnisse in{" "}
+                  {status.time / 1000} Sekunden
+                </Alert>
+              )}
             {status.sqlResult?.map((queryResult, index) => (
               <SqlTable key={index} table={queryResult} />
             ))}

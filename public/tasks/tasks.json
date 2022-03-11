@@ -52,7 +52,7 @@
   },
   {
     "db": "/Chinook_Sqlite.sqlite",
-    "name": "Durchschnitseinkauf",
+    "name": "Durchschnittseinkauf",
     "task": "Geben Sie an, wie viel Geld Kunden aus Deutschen Städten durchschnittlich pro Einkauf ausgeben.",
     "includeTables": ["Invoice"],
     "author": "Alexander"
